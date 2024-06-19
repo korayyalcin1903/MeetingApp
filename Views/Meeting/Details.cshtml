@@ -1,0 +1,36 @@
+@model MeetingApp.Entity.Meeting
+
+<h1>Meeting Details</h1>
+<hr>
+<div class="row">
+    <div class="col-9">
+        <div class="card">
+            <img src="~/img/meeting/@Model.MeetingPhoto" class="card-img-top img-fluid bordered h-100" alt="">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <h3 class="card-title">@Model.MeetingName</h3>
+                    <strong>@Model.StartDate.Date.ToString("d") - @Model.Location</strong>
+                </div>
+                <h5>@Model.Description</h5>
+                <a href="/meeting/register/@Model.MeetingId" class="btn btn-outline-secondary flex-grow-1 m-1">Register</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        @if(Model.MeetingUsers != null && Model.MeetingUsers.Any())
+        {
+            <h3>Katılımcılar - @Model.MeetingUsers.Count()</h3>
+            <hr>
+            <ul class="list-group">
+                @foreach (var meetingUser in Model.MeetingUsers)
+                {
+                    <li class="list-group-item"><img src="~/img/users/@meetingUser.User.Image" class="rounded-circle" style="width: 40px;"> <strong>@meetingUser.User.Name @meetingUser.User.Surname</strong> </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <h3>Katılımcı yok</h3>
+        }
+    </div>
+</div>

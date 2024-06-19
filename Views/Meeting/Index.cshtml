@@ -1,0 +1,19 @@
+@model List<Meeting>
+
+<h1>Meeting</h1>    
+
+<div class="row">
+    @foreach(var meeting in Model){
+            <div class="card col-6 col-sm-4 col-md-3 p-0 m-1">
+                <img src="~/img/meeting/@meeting.MeetingPhoto" alt="" class="card-img-top img-fluid bordered h-100">
+                <div class="card-body">
+                    <h5 class="card-title">@meeting.MeetingName</h5>
+                    <p class="card-text">@meeting.Location</p>
+                    <div class="d-flex justify-content-between">
+                        <a href="/meeting/details/@meeting.MeetingId" class="btn btn-outline-secondary flex-grow-1 m-1">Details</a>
+                        <a href="/meeting/register/@meeting.MeetingId" class="btn btn-outline-secondary flex-grow-1 m-1">Register</a>
+                    </div>
+                </div>
+            </div>
+    }
+</div>

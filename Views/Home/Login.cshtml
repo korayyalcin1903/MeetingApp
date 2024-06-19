@@ -1,0 +1,19 @@
+@model LoginViewModel
+
+
+<h3>Login</h3>
+<hr>
+<div class="col-6">
+    <form asp-action="Login" asp-controller="Home" enctype="application/x-www-form-urlencoded" method="post">
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label"></label>
+            <input asp-for="Email" class="form-control">            
+        </div>
+        <div class="mb-3">
+            <label asp-for="Password" class="form-label"></label>
+            <input asp-for="Password" class="form-control">            
+        </div>
+        <div asp-validation-summary="All"></div>
+        <button class="btn btn-secondary d-block" type="submit">Login</button>
+    </form>
+</div>
