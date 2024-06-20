@@ -25,7 +25,7 @@ namespace MeetingApp.Controllers
 
         public IActionResult Index()
         {
-            var meetings = _meetingRepository.Meetings.ToList();
+            var meetings = _meetingRepository.Meetings.Where(x => x.StartDate > DateTime.Now).ToList();
             return View(meetings);
         }
 
@@ -36,7 +36,6 @@ namespace MeetingApp.Controllers
             if (imageFile != null)
             {
                 var allowExtensions = new[] { ".jpg", ".jpeg", ".png" };
-                var maxSize = 600;
                 extension = Path.GetExtension(imageFile.FileName);
 
                 if (!allowExtensions.Contains(extension))
@@ -69,7 +68,7 @@ namespace MeetingApp.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> Register()
+        public IActionResult Register()
         {
             return View();           
         }
@@ -175,7 +174,7 @@ namespace MeetingApp.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpGet]
-        public async Task<IActionResult> Edit(int id)
+        public IActionResult Edit(int? id)
         {
             if(id == null){
                 return NotFound();

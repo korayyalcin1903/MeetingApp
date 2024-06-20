@@ -6,16 +6,16 @@ namespace MeetingApp.Models
     {
         [Required]
         [Display(Name = "Title")]
-        public string? MeetingName { get; set; }
+        public string MeetingName { get; set; }
         [Required]
-        public string? Subject { get; set; }
+        public string Subject { get; set; }
         [Required]
         [DataType(DataType.Html)]
-        public string? Description { get; set; }
+        public string Description { get; set; }
         [Display(Name = "Meeting Photo")]
-        public string? MeetingPhoto { get; set; }
+        public string MeetingPhoto { get; set; }
         [Required]
-        public string? Location { get; set; }
+        public string Location { get; set; }
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Date")]

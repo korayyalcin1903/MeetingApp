@@ -52,7 +52,6 @@ public class HomeController : Controller
         if (imageFile != null)
         {
             var allowExtensions = new[] { ".jpg", ".jpeg", ".png" };
-            var maxSize = 600;
             extension = Path.GetExtension(imageFile.FileName);
             Console.WriteLine(imageFile.Length);
 
@@ -115,7 +114,7 @@ public class HomeController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Login(LoginViewModel model)
     {
-        if (ModelState.IsValid)
+        if (ModelState.IsValid && model.Email != null && model.Password != null)
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
 

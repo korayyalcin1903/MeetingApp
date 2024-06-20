@@ -25,9 +25,9 @@
                 @foreach (var meetingUser in Model.MeetingUsers)
                 {
                     <li class="list-group-item d-flex justify-content-between">
-                        <div><img src="~/img/users/@meetingUser.User.Image" class="rounded-circle" style="width: 40px;"> <strong>@meetingUser.User.Name @meetingUser.User.Surname</strong></div>
+                        <div><img src="~/img/users/@meetingUser?.User?.Image" class="rounded-circle" style="width: 40px;"> <strong>@meetingUser?.User?.Name @meetingUser?.User?.Surname</strong></div>
                     @if(User.IsInRole("Admin")){
-                            <div><a href="/meeting/delete/@meetingUser.User.Id" class="btn btn-outline-danger btn-sm flex-grow-1 m-1">Delete</a></div>
+                            <div><a href="/meeting/delete/@meetingUser?.User?.Id" class="btn btn-outline-danger btn-sm flex-grow-1 m-1">Delete</a></div>
                         }
                     </li>
                 }
