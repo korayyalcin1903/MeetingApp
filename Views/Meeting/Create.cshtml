@@ -1,35 +1,44 @@
-@model RegisterViewModel
+@model MeetingViewModel
 
 <h3>Register</h3>
 <hr>
 <div class="col-6">
-    <form asp-action="Register" asp-controller="Home" enctype="multipart/form-data" method="post">
+    <form asp-action="Create" asp-controller="Meeting" enctype="multipart/form-data" method="post">
         <div class="mb-3">
-            <label asp-for="Name" class="form-label"></label>
-            <input asp-for="Name" class="form-control">            
+            <label asp-for="MeetingName" class="form-label"></label>
+            <input asp-for="MeetingName" class="form-control">            
         </div>
         <div class="mb-3">
-            <label asp-for="Surname" class="form-label"></label>
-            <input asp-for="Surname" class="form-control">            
+            <label asp-for="Subject" class="form-label"></label>
+            <input asp-for="Subject" class="form-control">            
         </div>
         <div class="mb-3">
-            <label asp-for="Image" class="form-label"></label>
-            <input asp-for="Image" class="form-control" type="file" name="imageFile" id="imageFile">           
+            <label asp-for="Description" class="form-label"></label>
+            <textarea asp-for="Description" class="form-control"></textarea>            
         </div>
         <div class="mb-3">
-            <label asp-for="Email" class="form-label"></label>
-            <input asp-for="Email" class="form-control">            
+            <label asp-for="MeetingPhoto" class="form-label"></label>
+            <input asp-for="MeetingPhoto" class="form-control" type="file" name="imageFile" id="imageFile">           
         </div>
         <div class="mb-3">
-            <label asp-for="Password" class="form-label"></label>
-            <input asp-for="Password" class="form-control">            
+            <label asp-for="Location" class="form-label"></label>
+            <input asp-for="Location" class="form-control">            
         </div>
         <div class="mb-3">
-            <label asp-for="ConfirmPassword" class="form-label"></label>
-            <input asp-for="ConfirmPassword" class="form-control">            
+            <label asp-for="StartDate" class="form-label"></label>
+            <input asp-for="StartDate" class="form-control">            
         </div>
         <div asp-validation-summary="All"></div>
-        <button class="btn btn-secondary d-block" type="submit">Register</button>
+        <button class="btn btn-secondary d-block" type="submit">Add</button>
     </form>
 </div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.2.0/tinymce.min.js" integrity="sha512-E2dqytT185qVoAL0sfqr39BLHEBQtmZze59ChMjYi4vRUW6BzIBLZAqErdQAAAJX8bkFq2kQgQL9Lbpm8Uuw0Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        tinymce.init({
+            selector : "#Description"
+        })
+    </script>
+}
 

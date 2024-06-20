@@ -137,7 +137,7 @@ public class HomeController : Controller
 
 
     public async Task<IActionResult> Logout(){
-        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        await _signInManager.SignOutAsync();
         return RedirectToAction("Login","Home");
     }
 }
