@@ -25,9 +25,12 @@ namespace MeetingApp.Data.Concrete
             }
 
             if(!context.Users.Any()){
-                context.Users.AddRange(
-                    new IdentityUser { Id = "admin" , Name = "Koray", Surname = "Yalçın", UserName = "admin@gmail.com", Image = "user.jpg", Email = "admin@gmail.com", Password = "1234"}
-                );
+                    var user = new User { Id = "admin" , Name = "Koray", Surname = "Yalçın", UserName = "admin@gmail.com", NormalizedUserName = "ADMIN@GMAIL.COM", NormalizedEmail = "ADMIN@GMAIL.COM", Image = "user.jpg", Email = "admin@gmail.com"};
+
+                var passwordHasher = new PasswordHasher<User>();
+                user.PasswordHash = passwordHasher.HashPassword(user, "1234");
+
+                context.Users.Add(user);
                 context.SaveChanges();
             }
 
@@ -40,7 +43,7 @@ namespace MeetingApp.Data.Concrete
 
             if(!context.UserRoles.Any()){
                 context.UserRoles.AddRange(
-                    new IdentityUserRole { RoleId = "admin", UserId = "admin"}
+                    new IdentityUserRole<string> { RoleId = "admin", UserId = "admin"}
                 );
                 context.SaveChanges();
             }
