@@ -3,6 +3,7 @@
 <h3>Meeting Register</h3>
 
 <form asp-action="Register" asp-controller="Meeting" method="post">
-    <strong> Toplantıya katılmak istediğinize emin misiniz?</strong>    
+    <h5> Toplantıya katılmak istediğinize emin misiniz?</h5>    
     <button type="submit" class="btn btn-secondary">Evet</button>
+    <a asp-action="Index" asp-controller="Meeting" class="btn btn-secondary">Hayır</a>
 </form>

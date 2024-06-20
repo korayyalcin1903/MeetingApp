@@ -7,7 +7,7 @@ namespace MeetingApp.Data.Abstract
         IQueryable<Meeting> Meetings { get; }
 
         void CreateMeeting(Meeting meeting);
-        void EditMeeting(Meeting meeting, int id);
+        void EditMeeting(Meeting meeting);
         void DeleteMeeting(Meeting meeting);
     }
 }

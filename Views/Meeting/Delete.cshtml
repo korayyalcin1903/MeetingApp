@@ -1,0 +1,10 @@
+@model Meeting
+
+<h3>Meeting Delete</h3>
+
+<form asp-action="Delete" asp-controller="Meeting" method="post">
+    <input type="hidden" value="@Model.MeetingId" name="id">
+    <h5> Toplantıya silmek istediğinize emin misiniz?</h5> 
+    <button type="submit" class="btn btn-danger">Evet</button>
+    <a asp-action="Index" asp-controller="Meeting" class="btn btn-secondary">Hayır</a>
+</form>

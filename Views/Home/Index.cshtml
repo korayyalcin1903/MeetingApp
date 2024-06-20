@@ -1,8 +1,32 @@
-﻿@{
+﻿
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <hr>
+    
+    <div class="row d-flex justify-content-center">
+    @foreach(var meeting in Model){
+            <div class="card col-12 col-sm-4 col-md-3 p-0 m-1">
+                <img src="~/img/meeting/@meeting.MeetingPhoto" alt="" class="card-img-top img-fluid bordered h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="card-title">@meeting.MeetingName</h5>
+                        <strong>@meeting.StartDate.Date.ToString("d")</strong>
+                    </div>
+                    <p class="card-text text-start">@meeting.Location</p>
+                    <div class="d-flex justify-content-between">
+                        <a href="/meeting/details/@meeting.MeetingId" class="btn btn-outline-secondary flex-grow-1 m-1">Details</a>
+                        <a href="/meeting/register/@meeting.MeetingId" class="btn btn-outline-secondary flex-grow-1 m-1">Register</a>
+                        @if(User.IsInRole("Admin")){
+                            <a href="/meeting/delete/@meeting.MeetingId" class="btn btn-outline-danger flex-grow-1 m-1">Delete</a>
+                            <a href="/meeting/edit/@meeting.MeetingId" class="btn btn-outline-primary flex-grow-1 m-1">Edit</a>
+                        }
+                    </div>
+                </div>
+            </div>
+    }
+</div>
 </div>

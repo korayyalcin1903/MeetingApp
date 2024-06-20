@@ -3,9 +3,9 @@
 <h1>Meeting Details</h1>
 <hr>
 <div class="row">
-    <div class="col-9">
+    <div class="col-12 col-sm-8 col-md-9">
         <div class="card">
-            <img src="~/img/meeting/@Model.MeetingPhoto" class="card-img-top img-fluid bordered h-100" alt="">
+            <img src="~/img/meeting/@Model.MeetingPhoto" class="card-img-top img-fluid bordered" style="height: 90vh;" alt="">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <h3 class="card-title">@Model.MeetingName</h3>
@@ -16,7 +16,7 @@
             </div>
         </div>
     </div>
-    <div class="col-3">
+    <div class="col-12 col-sm-4 col-md-3 mt-3">
         @if(Model.MeetingUsers != null && Model.MeetingUsers.Any())
         {
             <h3>Katılımcılar - @Model.MeetingUsers.Count()</h3>
@@ -24,7 +24,12 @@
             <ul class="list-group">
                 @foreach (var meetingUser in Model.MeetingUsers)
                 {
-                    <li class="list-group-item"><img src="~/img/users/@meetingUser.User.Image" class="rounded-circle" style="width: 40px;"> <strong>@meetingUser.User.Name @meetingUser.User.Surname</strong> </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <div><img src="~/img/users/@meetingUser.User.Image" class="rounded-circle" style="width: 40px;"> <strong>@meetingUser.User.Name @meetingUser.User.Surname</strong></div>
+                    @if(User.IsInRole("Admin")){
+                            <div><a href="/meeting/delete/@meetingUser.User.Id" class="btn btn-outline-danger btn-sm flex-grow-1 m-1">Delete</a></div>
+                        }
+                    </li>
                 }
             </ul>
         }

@@ -29,7 +29,7 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return View();
+        return View(_context.Meetings.Take(3).ToList());
     }
 
     public IActionResult Privacy()
@@ -125,6 +125,7 @@ public class HomeController : Controller
 
                 if (result.Succeeded)
                 {
+                    ViewData["Photo"] = "1.jpg";
                     return RedirectToAction("Index", "Home");
                 }
             }
