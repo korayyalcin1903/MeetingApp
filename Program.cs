@@ -42,7 +42,9 @@ builder.Services.Configure<IdentityOptions>(options =>
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie();
 
+
 var app = builder.Build();
+
 
 SeedData.TestVerileriniDoldur(app);
 
@@ -52,9 +54,18 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
+// app.Use(async (context, next) => {
+//     await next();
+//     if(context.Response.StatusCode == 404){
+//         context.Request.Path = "/Error";
+//         await next();
+//     }
+// });
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseStatusCodePagesWithRedirects("/Error/PageNotFound");
 
 app.UseRouting();
 
