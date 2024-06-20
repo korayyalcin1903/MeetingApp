@@ -11,8 +11,8 @@
                     <h3 class="card-title">@Model.MeetingName</h3>
                     <strong>@Model.StartDate.Date.ToString("d") - @Model.Location</strong>
                 </div>
-                <h5>@Model.Description</h5>
-                <a href="/meeting/register/@Model.MeetingId" class="btn btn-outline-secondary flex-grow-1 m-1">Register</a>
+                <h5>@Html.Raw(@Model.Description)</h5>
+                <a href="/meeting/register/@Model.MeetingId" class="btn btn-outline-secondary d-block flex-grow-1 m-1">Register</a>
             </div>
         </div>
     </div>

@@ -92,14 +92,6 @@ namespace MeetingApp.Migrations
                         .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "1d18ba81-29f2-455d-9800-4fbadee295ed",
-                            Name = "Admin",
-                            NormalizedName = "admin"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -290,9 +282,6 @@ namespace MeetingApp.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("Name")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Password")
                         .HasColumnType("longtext");
 
                     b.Property<string>("Surname")

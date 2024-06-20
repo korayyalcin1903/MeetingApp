@@ -8,7 +8,6 @@ namespace MeetingApp.Data.Entity
         public string? Name { get; set; }
         public string? Surname { get; set; }
         public string Image { get; set; } =  "user.jpg";
-        public string? Password { get; set; }
         public List<MeetingUser>? MeetingUsers { get; set; } = new List<MeetingUser>();
 
     }

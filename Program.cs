@@ -25,11 +25,26 @@ builder.Services.AddIdentity<User, IdentityRole>()
     .AddEntityFrameworkStores<MeetingContext>()
     .AddDefaultTokenProviders();
 
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    // Password settings.
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequiredLength = 4;
+    options.Password.RequiredUniqueChars = 4;
+
+    options.User.RequireUniqueEmail = false;
+});
+
 // Configure authentication
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie();
 
+
 var app = builder.Build();
+
 
 SeedData.TestVerileriniDoldur(app);
 
@@ -39,9 +54,18 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
+// app.Use(async (context, next) => {
+//     await next();
+//     if(context.Response.StatusCode == 404){
+//         context.Request.Path = "/Error";
+//         await next();
+//     }
+// });
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseStatusCodePagesWithRedirects("/Error/PageNotFound");
 
 app.UseRouting();
 

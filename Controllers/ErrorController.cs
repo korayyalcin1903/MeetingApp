@@ -13,5 +13,11 @@ namespace MeetingApp.Controllers
         {
             return View();
         }
+
+        public IActionResult PageNotFound()
+        {
+            return View();
+        }
+
     }
 }

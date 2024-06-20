@@ -1,5 +1,6 @@
 using MeetingApp.Data.Entity;
 using MeetingApp.Entity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace MeetingApp.Data.Concrete
@@ -24,10 +25,25 @@ namespace MeetingApp.Data.Concrete
             }
 
             if(!context.Users.Any()){
-                context.Users.AddRange(
-                    new User { Name = "Koray", Surname = "Yalçın", UserName = "admin@gmail.com", Image = "user.jpg", Email = "admin@gmail.com", Password = "1234"},
-                    new User { Name = "John", Surname = "Doe", UserName = "john@gmail.com" ,Image = "1.jpg", Email = "john@gmail.com", Password = "123"},
-                    new User { Name = "Bernard", Surname = "Armstrong",UserName = "bernard@gmail.com", Image = "2.jpg", Email = "bernard@gmail.com", Password = "123"}
+                    var user = new User { Id = "admin" , Name = "Koray", Surname = "Yalçın", UserName = "admin@gmail.com", NormalizedUserName = "ADMIN@GMAIL.COM", NormalizedEmail = "ADMIN@GMAIL.COM", Image = "user.jpg", Email = "admin@gmail.com"};
+
+                var passwordHasher = new PasswordHasher<User>();
+                user.PasswordHash = passwordHasher.HashPassword(user, "1234");
+
+                context.Users.Add(user);
+                context.SaveChanges();
+            }
+
+            if(!context.Roles.Any()){
+                context.Roles.AddRange(
+                    new IdentityRole { Id = "admin", Name = "Admin"}
+                );
+                context.SaveChanges();
+            }
+
+            if(!context.UserRoles.Any()){
+                context.UserRoles.AddRange(
+                    new IdentityUserRole<string> { RoleId = "admin", UserId = "admin"}
                 );
                 context.SaveChanges();
             }

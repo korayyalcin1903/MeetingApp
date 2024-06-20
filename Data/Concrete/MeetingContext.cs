@@ -19,8 +19,6 @@ namespace MeetingApp.Data.Concrete
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Admin", NormalizedName = "admin" });
-
             // MeetingUser ilişkileri
             modelBuilder.Entity<MeetingUser>()
                 .HasKey(mu => new { mu.MeetingId, mu.UserId });
